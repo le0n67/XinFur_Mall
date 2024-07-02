@@ -18,4 +18,9 @@ public class ServiceTest {
     void isExistsUserName(){
         System.out.println(memberService.isExistsUserName("admin"));
     }
+
+    @Test
+    void login(){
+        System.out.println(memberService.login("root","root"));
+    }
 }
