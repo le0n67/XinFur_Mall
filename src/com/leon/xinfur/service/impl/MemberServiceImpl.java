@@ -40,8 +40,25 @@ public class MemberServiceImpl implements MemberService {
         return memberDAO.queryMemberByUsername(username) != null;
     }
 
+    /**
+     * 用户登录
+     * @param username 用户名
+     * @param password 密码
+     * @return 用户对象
+     */
     @Override
     public Member login(String username, String password) {
         return memberDAO.queryMemberByUsernameAndPassword(username, password);
     }
+
+    /**
+     * 根据用户名查表,若为前三名id,则⑦身份为 管理员
+     * @param username 用户名
+     * @return 是否为管理员
+     */
+    @Override
+    public boolean isAdmin(String username) {
+        return memberDAO.queryMemberByUsername(username).getId() < 3;
+    }
 }
+

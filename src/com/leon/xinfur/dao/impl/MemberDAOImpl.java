@@ -47,4 +47,6 @@ public class MemberDAOImpl extends BasicDAO<Member> implements MemberDAO {
                 " WHERE `username`=? and `password`=md5(?)";
         return  querySingle(sql, Member.class, username, password);
     }
+
+
 }

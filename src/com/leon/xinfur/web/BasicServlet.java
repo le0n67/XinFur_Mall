@@ -18,7 +18,9 @@ import java.lang.reflect.Method;
 abstract public class BasicServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        System.out.println("BasicServlet doPost");
         String action = req.getParameter("action");
+        System.out.println("action:" + action);
         //使用反射获取当前对象方法
 
         //尝试获取当前类中名为action的方法
@@ -34,6 +36,7 @@ abstract public class BasicServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        System.out.println("BasicServlet doGet");
         doPost(req, resp);
     }
 }

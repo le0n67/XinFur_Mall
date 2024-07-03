@@ -18,4 +18,5 @@ public interface MemberDAO {
 
     //通过用户名和密码返回对应Member
     Member queryMemberByUsernameAndPassword(String username, String password);
+
 }
