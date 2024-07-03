@@ -11,6 +11,10 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.leon.xinfur.web.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MemberServlet</servlet-name>
+        <servlet-class>com.leon.xinfur.web.MemberServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/registerServlet</url-pattern>
@@ -18,5 +22,9 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MemberServlet</servlet-name>
+        <url-pattern>/memberServlet</url-pattern>
     </servlet-mapping>
 </web-app>

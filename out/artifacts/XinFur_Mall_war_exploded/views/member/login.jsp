@@ -79,8 +79,8 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo"
-                                                   width="300px"/></a>
+                        <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo"
+                                                  width="300px"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -95,8 +95,8 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo"
-                                                   width="300px"/></a>
+                        <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo"
+                                                  width="300px"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -127,11 +127,12 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <span class="errorMsg1"
-                                          style="float: right; font-weight: bold; font-size: 20pt; margin-left: 10px;">
+                                          style="float: right; font-weight: bold; font-size: 18pt; color: red">
                                         ${requestScope.msg}
                                     </span>
-                                    <form action="/XinFur_Mall/loginServlet" method="post">
-                                        <input type="text" id="username1" name="username" placeholder="用户名"/>
+                                    <form action="memberServlet" method="post">
+                                        <input type="hidden" name="action" value="login">
+                                        <input type="text" id="username1" value="${requestScope.username}" name="username" placeholder="用户名"/>
                                         <input type="password" id="password1" name="password" placeholder="密码"/>
                                         <div class="button-box">
                                             <div class="login-toggle-btn">
@@ -149,9 +150,11 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <span class="errorMsg2"
-                                          style="float: right; font-weight: bold; font-size: 20pt; margin-left: 10px;"></span>
+                                          style="float: right; font-weight: bold; font-size: 18pt; color: red">
+                                    </span>
                                     <!-- 注册 -->
-                                    <form action="/XinFur_Mall/registerServlet" method="post">
+                                    <form action="memberServlet" method="post">
+                                        <input type="hidden" name="action" value="register">
                                         <input type="text" id="username2" name="username" placeholder="用户名"/>
                                         <input type="password" id="password2" name="password"
                                                placeholder="输入密码"/>

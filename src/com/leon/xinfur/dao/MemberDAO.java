@@ -15,5 +15,7 @@ public interface MemberDAO {
 
     //保存Member到表
     int saveMember(Member member);
+
+    //通过用户名和密码返回对应Member
     Member queryMemberByUsernameAndPassword(String username, String password);
 }
