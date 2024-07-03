@@ -32,7 +32,7 @@
                     <div class="header-actions">
                         <!-- Single Wedge Start -->
                         <div class="header-bottom-set dropdown">
-                            <a href="pages/manager/manager.html">家居管理</a>
+                            <a href="manage/furnServlet?action=list">家居管理</a>
                         </div>
                         <div class="header-bottom-set dropdown">
                             <a href="pages/manager/manager.html">订单管理</a>
