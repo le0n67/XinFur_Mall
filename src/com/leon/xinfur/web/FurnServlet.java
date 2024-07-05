@@ -24,7 +24,6 @@ public class FurnServlet extends BasicServlet {
     private FurnService furnService = new FurnServiceImpl();
 
     public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("FurnServlet.list()");
         List<Furn> Furns = furnService.getAllFurn();
         request.setAttribute("furns", Furns);
         request.getRequestDispatcher("/views/manager/furn_manage.jsp").forward(request, response);
@@ -40,6 +39,11 @@ public class FurnServlet extends BasicServlet {
 
         // 跳转到furnServlet页面，传入action=list参数
         //request.getRequestDispatcher("/manage/furnServlet?action=list").forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
+    }
+
+    public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        furnService.deleteFurnById(DataUtils.parseInt(request.getParameter("id"), 0));
         response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
     }
 }

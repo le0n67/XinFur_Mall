@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css"/>
+    <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(function (){
+            $("a.deleteCss").click(function (){
+                var name = $(this).parent().parent().find("td:eq(1)").text();
+                return confirm("确定删除 ["+name+"] 吗？")
+            })
+        })
+    </script>
 </head>
 
 <body>
@@ -97,21 +106,18 @@
                             <c:forEach items="${requestScope.furns}" var="furn">
                             <tr>
                                 <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}"
-                                                     alt=""/></a>
+                                    <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}" alt="assets/images/product-image/default.jpg"/></a>
                                 </td>
+
                                 <td class="product-name"><a href="#">${furn.name}</a></td>
                                 <td class="product-name"><a href="#">${furn.maker}</a></td>
                                 <td class="product-price-cart"><span class="amount">${furn.price}</span></td>
-                                <td class="product-quantity">
-                                    ${furn.sales}
-                                </td>
-                                <td class="product-quantity">
-                                    ${furn.stock}
-                                </td>
+                                <td class="product-quantity">${furn.sales}</td>
+                                <td class="product-quantity">${furn.stock}</td>
+
                                 <td class="product-remove">
-                                    <a href="#"><i class="icon-pencil"></i></a>
-                                    <a href="#"><i class="icon-close"></i></a>
+                                    <a class="updateCss" href="#"><i class="icon-pencil"></i></a>
+                                    <a class="deleteCss" href="manage/furnServlet?action=delete&id=${furn.id}"><i class="icon-close"></i></a>
                                 </td>
                             </tr>
                             </c:forEach>
