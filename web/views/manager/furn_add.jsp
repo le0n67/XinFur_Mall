@@ -10,6 +10,57 @@
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css"/>
+    <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" >
+        // private String name;
+        // private String maker;
+        // private BigDecimal price;
+        // private Integer sales;
+        // private Integer stock;
+        // private String imgPath;
+
+        //表单验证
+        $(function () {
+            $("#submit").click(function () {
+                var name = $('input[name="name"]').val(); // 家具名字，可以是任意字符
+                var maker = $('input[name="maker"]').val(); // 制造商名字，也可以是任意字符
+                var priceStr = $('input[name="price"]').val(); // 价格字符串，数字（整数或小数）
+                var sales = $('input[name="sales"]').val(); // 销售量，整数
+                var stock = $('input[name="stock"]').val(); // 库存量，整数
+
+                // 使用正则表达式验证
+                var anyCharRegex = /^[^\n]+$/; // 匹配除了换行符之外的任意字符
+                var numberRegex = /^\d+(\.\d+)?$/; // 匹配整数或小数
+                var integerRegex = /^\d+$/; // 匹配整数
+
+                // 验证逻辑
+                if (!anyCharRegex.test(name)) {
+                    alert('家具名字不能包含换行符');
+                    return false; // 阻止表单提交
+                }
+                if (!anyCharRegex.test(maker)) {
+                    alert('制造商名字不能包含换行符');
+                    return false;
+                }
+                if (!numberRegex.test(priceStr)) {
+                    alert('价格格式不正确，应为数字（整数或小数）');
+                    return false;
+                }
+                // 尝试将销售量和库存量转换为整数，并检查是否非负
+                if (!integerRegex.test(sales) || parseInt(sales, 10) < 0) {
+                    alert('销售量必须是一个非负整数');
+                    return false;
+                }
+                if (!integerRegex.test(stock) || parseInt(stock, 10) < 0) {
+                    alert('库存量必须是一个非负整数');
+                    return false;
+                }
+
+                // 如果所有验证都通过，则提交表单
+
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -31,23 +82,14 @@
                 <!-- Header Action Start -->
                 <div class="col align-self-center">
                     <div class="header-actions">
-                        <div class="header_account_list">
-                            <a href="javascript:void(0)" class="header-action-btn search-btn"><i
-                                    class="icon-magnifier"></i></a>
-                            <div class="dropdown_search">
-                                <form class="action-form" action="#">
-                                    <input class="form-control" placeholder="Enter your search key" type="text">
-                                    <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
-                                </form>
-                            </div>
-                        </div>
+
                         <!-- Single Wedge Start -->
                         <div class="header-bottom-set dropdown">
-                            <a href="#">后台管理</a>
+                            <a href="#">家居管理</a>
                         </div>
                         <div class="header-bottom-set dropdown">
-                        <a href="views/manager/furn_add.jsp">添加家居</a>
-                    </div>
+                            <a href="#">订单管理</a>
+                        </div>
                     </div>
                 </div>
                 <!-- Header Action End -->
@@ -76,10 +118,11 @@
 <!-- Cart Area Start -->
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
-        <h3 class="cart-page-title">家居后台管理</h3>
+        <h3 class="cart-page-title">家居后台管理-添加家居</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <form action="#">
+                <form action="manage/furnServlet" method="post">
+                    <input type="hidden" name="action" value="add"/>
                     <div class="table-content table-responsive cart-table-content">
                         <table>
                             <thead>
@@ -94,27 +137,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${requestScope.furns}" var="furn">
                             <tr>
                                 <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}"
+                                    <a href="#"><img class="img-responsive ml-3" src="assets/images/product-image/default.jpg"
                                                      alt=""/></a>
                                 </td>
-                                <td class="product-name"><a href="#">${furn.name}</a></td>
-                                <td class="product-name"><a href="#">${furn.maker}</a></td>
-                                <td class="product-price-cart"><span class="amount">${furn.price}</span></td>
+                                <td class="product-name"><input name="name" style="width: 60%" type="text" value=""/></td>
+                                <td class="product-name"><input name="maker" style="width: 90%" type="text" value=""/></td>
+                                <td class="product-price-cart"><input name="price" style="width: 90%" type="text" value=""/></td>
                                 <td class="product-quantity">
-                                    ${furn.sales}
+                                    <input name="sales" style="width: 90%" type="text" value=""/>
                                 </td>
                                 <td class="product-quantity">
-                                    ${furn.stock}
+                                    <input name="stock" style="width: 90%" type="text" value=""/>
                                 </td>
-                                <td class="product-remove">
-                                    <a href="#"><i class="icon-pencil"></i></a>
-                                    <a href="#"><i class="icon-close"></i></a>
+                                <td>
+<!--                                    <a href="#"><i class="icon-pencil"></i></a>-->
+<!--                                    <a href="#"><i class="icon-close"></i></a>-->
+                                    <input type="submit" id="submit" style="width: 90%;background-color: silver;border: silver;border-radius: 20%;" value="添加家居"/>
                                 </td>
                             </tr>
-                            </c:forEach>
                             </tbody>
                         </table>
                     </div>

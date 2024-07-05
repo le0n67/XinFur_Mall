@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface FurnDAO {
     List<Furn> queryFuns();
+    int addFurn(Furn furn);
 }

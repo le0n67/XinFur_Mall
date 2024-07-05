@@ -45,6 +45,9 @@
                         <div class="header-bottom-set dropdown">
                             <a href="#">后台管理</a>
                         </div>
+                        <div class="header-bottom-set dropdown">
+                        <a href="views/manager/furn_add.jsp">添加家居</a>
+                    </div>
                     </div>
                 </div>
                 <!-- Header Action End -->

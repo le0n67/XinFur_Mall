@@ -8,6 +8,7 @@ import com.leon.xinfur.entity.Furn;
 import com.leon.xinfur.entity.Member;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -40,5 +41,13 @@ public class SQLTest {
         for (int i = 0; i < furns.size(); i++) {
             System.out.println(furns.get(i));
         }
+    }
+
+    @Test
+    void addFurn(){
+        Furn furn = new Furn(null, "无敌垃圾桶凳子", "猩猩董事长", new BigDecimal(999), 0, 1, "/static/img/furn/1.jpg");
+        int i = furnDAO.addFurn(furn);
+
+        System.out.println(i);
     }
 }

@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface FurnService {
     List<Furn> getAllFurn();
+    Boolean addFurn(Furn furn);
 }

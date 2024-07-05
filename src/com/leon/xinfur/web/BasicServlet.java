@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 
 /**
@@ -17,7 +18,9 @@ import java.lang.reflect.Method;
 
 abstract public class BasicServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+        req.setCharacterEncoding("utf-8");
+
         System.out.println("BasicServlet doPost");
         String action = req.getParameter("action");
         System.out.println("action:" + action);
@@ -35,7 +38,7 @@ abstract public class BasicServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
         System.out.println("BasicServlet doGet");
         doPost(req, resp);
     }

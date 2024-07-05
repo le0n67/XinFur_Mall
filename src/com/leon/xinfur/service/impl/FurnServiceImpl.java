@@ -19,7 +19,11 @@ public class FurnServiceImpl implements FurnService {
     FurnDAO furnDAO=new FurnDAOImpl();
     @Override
     public List<Furn> getAllFurn() {
-        List<Furn> furns = furnDAO.queryFuns();
-        return furns;
+        return furnDAO.queryFuns();
+    }
+
+    @Override
+    public Boolean addFurn(Furn furn) {
+        return furnDAO.addFurn(furn)!=0;
     }
 }

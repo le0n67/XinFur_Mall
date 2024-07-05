@@ -17,7 +17,7 @@ public class Furn {
     private BigDecimal price;
     private Integer sales;
     private Integer stock;
-    private String imgPath;
+    private String imgPath="assets/images/product-image/default.jpg";
 
     public Furn(){}
 
@@ -28,7 +28,9 @@ public class Furn {
         this.price = price;
         this.sales = sales;
         this.stock = stock;
-        this.imgPath = imgPath;
+        if (!(imgPath == null || "".equals(imgPath)))  {
+            this.imgPath = imgPath;
+        }
     }
 
     @Override
@@ -92,11 +94,11 @@ public class Furn {
         this.stock = stock;
     }
 
-    public String getimgPath() {
+    public String getImgPath() {
         return imgPath;
     }
 
-    public void setimgPath(String imgPath) {
+    public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
     }
 }
