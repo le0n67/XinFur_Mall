@@ -22,6 +22,7 @@ import java.util.List;
 public class SQLTest {
     MemberDAO memberDAO=new MemberDAOImpl();
     FurnDAO furnDAO=new FurnDAOImpl();
+
     @Test
     void queryMemberByUsername(){
         Member member = memberDAO.queryMemberByUsername("roo1");
@@ -49,5 +50,19 @@ public class SQLTest {
         int i = furnDAO.addFurn(furn);
 
         System.out.println(i);
+    }
+
+     @Test
+    void getTotalRow(){
+        System.out.println(furnDAO.getTotalRow());
+     }
+
+     @Test
+     void getPageItems(){
+
+         List<Furn> furns = furnDAO.getPageItems(5, 5);
+         for (int i = 0; i < furns.size(); i++) {
+             System.out.println(furns.get(i));
+         }
     }
 }

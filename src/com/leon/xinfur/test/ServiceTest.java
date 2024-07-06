@@ -42,9 +42,13 @@ public class ServiceTest {
 
     @Test
     void update(){
-
         Furn furn = new Furn(11,"板砖", "猩猩大王", new BigDecimal(1000), 100, 100, "assets/images/product-image/default.jpg");
         System.out.println(furnService.updateFurn(furn));
         System.out.println(furnService.queryFurnById(11));
+    }
+
+    @Test
+    void page(){
+        System.out.println(furnService.Page(2, 5));
     }
 }

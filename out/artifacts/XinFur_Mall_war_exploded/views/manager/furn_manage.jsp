@@ -107,7 +107,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${requestScope.furns}" var="furn">
+                            <c:forEach items="${requestScope.page.items}" var="furn">
                             <tr>
                                 <td class="product-thumbnail">
                                     <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}" alt="assets/images/product-image/default.jpg"/></a>

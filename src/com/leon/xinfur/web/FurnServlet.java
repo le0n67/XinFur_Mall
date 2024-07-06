@@ -7,6 +7,7 @@ package com.leon.xinfur.web; /**
  */
 
 import com.leon.xinfur.entity.Furn;
+import com.leon.xinfur.entity.Page;
 import com.leon.xinfur.service.FurnService;
 import com.leon.xinfur.service.impl.FurnServiceImpl;
 import com.leon.xinfur.utils.DataUtils;
@@ -60,4 +61,11 @@ public class FurnServlet extends BasicServlet {
         response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
     }
 
+    protected void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int pageNo = DataUtils.parseInt(request.getParameter("pageNo"), 1);
+        int pageSize = DataUtils.parseInt(request.getParameter("pageSize"), Page.DEFAULT_PAGE_SIZE);
+        Page<Furn> page = furnService.Page(pageNo, pageSize);
+        request.setAttribute("page", page);
+        request.getRequestDispatcher("/views/manager/furn_manage.jsp").forward(request, response);
+    }
 }

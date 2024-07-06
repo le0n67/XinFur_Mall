@@ -44,4 +44,16 @@ public class FurnDAOImpl extends BasicDAO<Furn> implements FurnDAO {
         String sql="UPDATE furn SET name=?,maker=?,price=?,sales=?,stock=?,img_path=? WHERE id=?";
         return update(sql,furn.getName(),furn.getMaker(),furn.getPrice(),furn.getSales(),furn.getStock(),furn.getImgPath(),furn.getId());
     }
+
+    @Override
+    public int getTotalRow() {
+        String sql="SELECT COUNT(*) from `furn`";
+        return ((Number)queryScalar(sql)).intValue();
+    }
+
+    @Override
+    public List<Furn> getPageItems(int pageNo, int pageSize)  {
+        String sql="SELECT `id` , `name` , `maker` , `price` , `sales` , `stock` , `img_path` imgPath from furn LIMIT ? , ? ;";
+        return queryMulti(sql,Furn.class,(pageNo-1)*pageSize,pageSize);
+    }
 }

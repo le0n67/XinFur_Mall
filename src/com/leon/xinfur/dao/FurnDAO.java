@@ -17,4 +17,6 @@ public interface FurnDAO {
     int deleteFurnById(int id);
     Furn queryFurnById(int id);
     int updateFurn(Furn furn);
+    int getTotalRow();
+    List<Furn> getPageItems(int pageNo, int pageSize);
 }
