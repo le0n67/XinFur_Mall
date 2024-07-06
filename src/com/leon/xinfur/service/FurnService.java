@@ -15,4 +15,6 @@ public interface FurnService {
     List<Furn> getAllFurn();
     Boolean addFurn(Furn furn);
     Boolean deleteFurnById(int id);
+    Furn queryFurnById(int id);
+    Boolean updateFurn(Furn furn);
 }

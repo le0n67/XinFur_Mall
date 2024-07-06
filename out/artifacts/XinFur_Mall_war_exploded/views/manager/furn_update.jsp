@@ -70,7 +70,9 @@
         <h3 class="cart-page-title">家居后台管理-修改家居</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <form action="#" method="post">
+                <form action="manage/furnServlet" method="post">
+                    <input type="hidden" name="action" value="update"/>
+                    <input type="hidden" name="id" value="${furn.id}"/>
                     <div class="table-content table-responsive cart-table-content">
                         <table>
                             <thead>
@@ -87,21 +89,20 @@
                             <tbody>
                             <tr>
                                 <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-3" src="assets/images/product-image/default.jpg"
-                                                     alt=""/></a>
+                                    <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}" alt="assets/images/product-image/default.jpg"/></a>
                                 </td>
-                                <td class="product-name"><input name="name" style="width: 60%" type="text" value="Name"/></td>
-                                <td class="product-name"><input name="maker" style="width: 90%" type="text" value="蚂蚁家居"/></td>
-                                <td class="product-price-cart"><input name="price" style="width: 90%" type="text" value="60.00"/></td>
+                                <td class="product-name"><input name="name" style="width: 60%" type="text" value="${furn.name}"/></td>
+                                <td class="product-name"><input name="maker" style="width: 90%" type="text" value="${furn.maker}"/></td>
+                                <td class="product-price-cart"><input name="price" style="width: 90%" type="text" value="${furn.price}"/></td>
                                 <td class="product-quantity">
-                                    <input name="sales" style="width: 90%" type="text" value="100"/>
+                                    <input name="sales" style="width: 90%" type="text" value="${furn.sales}"/>
                                 </td>
                                 <td class="product-quantity">
-                                    <input name="stock" style="width: 90%" type="text" value="80"/>
+                                    <input name="stock" style="width: 90%" type="text" value="${furn.stock}"/>
                                 </td>
                                 <td>
-<!--                                    <a href="#"><i class="icon-pencil"></i></a>-->
-<!--                                    <a href="#"><i class="icon-close"></i></a>-->
+                                    <!--                                    <a href="#"><i class="icon-pencil"></i></a>-->
+                                    <!--                                    <a href="#"><i class="icon-close"></i></a>-->
                                     <input type="submit" style="width: 90%;background-color: silver;border: silver;border-radius: 20%;" value="修改家居"/>
                                 </td>
                             </tr>

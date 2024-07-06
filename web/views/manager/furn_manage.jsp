@@ -17,6 +17,10 @@
                 var name = $(this).parent().parent().find("td:eq(1)").text();
                 return confirm("确定删除 ["+name+"] 吗？")
             })
+            $("a.updateCss").click(function (){
+                var name = $(this).parent().parent().find("td:eq(1)").text();
+                return confirm("确定更新 ["+name+"] 吗？")
+            })
         })
     </script>
 </head>
@@ -116,7 +120,7 @@
                                 <td class="product-quantity">${furn.stock}</td>
 
                                 <td class="product-remove">
-                                    <a class="updateCss" href="#"><i class="icon-pencil"></i></a>
+                                    <a class="updateCss" href="manage/furnServlet?action=show&id=${furn.id}"><i class="icon-pencil"></i></a>
                                     <a class="deleteCss" href="manage/furnServlet?action=delete&id=${furn.id}"><i class="icon-close"></i></a>
                                 </td>
                             </tr>

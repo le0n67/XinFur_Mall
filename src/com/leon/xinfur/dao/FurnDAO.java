@@ -12,7 +12,9 @@ import java.util.List;
  * @version 1.0
  */
 public interface FurnDAO {
-    List<Furn> queryFuns();
+    List<Furn> queryFurns();
     int addFurn(Furn furn);
     int deleteFurnById(int id);
+    Furn queryFurnById(int id);
+    int updateFurn(Furn furn);
 }

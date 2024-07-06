@@ -37,7 +37,7 @@ public class SQLTest {
 
     @Test
     void queryFurns(){
-        List<Furn> furns = furnDAO.queryFuns();
+        List<Furn> furns = furnDAO.queryFurns();
         for (int i = 0; i < furns.size(); i++) {
             System.out.println(furns.get(i));
         }

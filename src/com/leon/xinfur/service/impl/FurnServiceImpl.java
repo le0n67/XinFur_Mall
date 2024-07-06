@@ -19,7 +19,7 @@ public class FurnServiceImpl implements FurnService {
     FurnDAO furnDAO=new FurnDAOImpl();
     @Override
     public List<Furn> getAllFurn() {
-        return furnDAO.queryFuns();
+        return furnDAO.queryFurns();
     }
 
     @Override
@@ -30,5 +30,15 @@ public class FurnServiceImpl implements FurnService {
     @Override
     public Boolean deleteFurnById(int id) {
         return furnDAO.deleteFurnById(id)!=0;
+    }
+
+    @Override
+    public Furn queryFurnById(int id) {
+        return furnDAO.queryFurnById(id);
+    }
+
+    @Override
+    public Boolean updateFurn(Furn furn) {
+        return furnDAO.updateFurn(furn)!=0;
     }
 }

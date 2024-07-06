@@ -1,10 +1,13 @@
 package com.leon.xinfur.test;
 
+import com.leon.xinfur.entity.Furn;
 import com.leon.xinfur.service.FurnService;
 import com.leon.xinfur.service.MemberService;
 import com.leon.xinfur.service.impl.FurnServiceImpl;
 import com.leon.xinfur.service.impl.MemberServiceImpl;
 import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 /**
  * Date：2024/7/1  17:57
@@ -30,5 +33,18 @@ public class ServiceTest {
     @Test
     void getAllFurn(){
         System.out.println(furnService.getAllFurn());
+    }
+
+    @Test
+    void getFurnById(){
+        System.out.println(furnService.queryFurnById(1));
+    }
+
+    @Test
+    void update(){
+
+        Furn furn = new Furn(11,"板砖", "猩猩大王", new BigDecimal(1000), 100, 100, "assets/images/product-image/default.jpg");
+        System.out.println(furnService.updateFurn(furn));
+        System.out.println(furnService.queryFurnById(11));
     }
 }

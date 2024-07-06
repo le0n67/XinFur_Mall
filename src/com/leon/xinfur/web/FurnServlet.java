@@ -23,13 +23,13 @@ import java.util.List;
 public class FurnServlet extends BasicServlet {
     private FurnService furnService = new FurnServiceImpl();
 
-    public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Furn> Furns = furnService.getAllFurn();
         request.setAttribute("furns", Furns);
         request.getRequestDispatcher("/views/manager/furn_manage.jsp").forward(request, response);
     }
 
-    public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 创建一个新的Furn对象
         Furn furn = DataUtils.copyParamToBean(request.getParameterMap(), new Furn());
@@ -42,8 +42,22 @@ public class FurnServlet extends BasicServlet {
         response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
     }
 
-    public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         furnService.deleteFurnById(DataUtils.parseInt(request.getParameter("id"), 0));
         response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
     }
+
+    protected void show(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = DataUtils.parseInt(request.getParameter("id"), 0);
+        Furn furn = furnService.queryFurnById(id);
+        request.setAttribute("furn", furn);
+        request.getRequestDispatcher("/views/manager/furn_update.jsp").forward(request, response);
+    }
+
+    protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Furn furn = DataUtils.copyParamToBean(request.getParameterMap(), new Furn());
+        furnService.updateFurn(furn);
+        response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
+    }
+
 }
