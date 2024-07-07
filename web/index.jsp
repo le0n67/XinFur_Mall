@@ -6,4 +6,4 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:forward page="/customerFurnServlet?action=page&pageNo=1"></jsp:forward>
+<jsp:forward page="/customerFurnServlet?action=pageByName&pageNo=1"></jsp:forward>

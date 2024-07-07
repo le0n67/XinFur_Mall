@@ -8,6 +8,7 @@ import com.leon.xinfur.service.impl.MemberServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Date：2024/7/1  17:57
@@ -51,4 +52,11 @@ public class ServiceTest {
     void page(){
         System.out.println(furnService.Page(2, 5));
     }
+
+
+    @Test
+    void pageByName(){
+        System.out.println(furnService.PageByName(1, 5, "沙发"));
+    }
+
 }

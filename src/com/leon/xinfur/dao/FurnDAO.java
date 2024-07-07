@@ -19,4 +19,7 @@ public interface FurnDAO {
     int updateFurn(Furn furn);
     int getTotalRow();
     List<Furn> getPageItems(int pageNo, int pageSize);
+    int getTotalRowByName(String name);
+    List<Furn> getPageItemsByName(int pageNo, int pageSize, String name);
+
 }

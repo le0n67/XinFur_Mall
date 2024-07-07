@@ -21,8 +21,8 @@ abstract public class BasicServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
         req.setCharacterEncoding("utf-8");
 
-        System.out.println("BasicServlet doPost");
         String action = req.getParameter("action");
+        System.out.print("BasicServlet doPost --> ");
         System.out.println("action:" + action);
         //使用反射获取当前对象方法
 
@@ -39,7 +39,6 @@ abstract public class BasicServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
-        System.out.println("BasicServlet doGet");
         doPost(req, resp);
     }
 }

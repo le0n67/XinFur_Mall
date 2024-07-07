@@ -38,8 +38,9 @@
                             <a href="javascript:void(0)" class="header-action-btn search-btn"><i
                                     class="icon-magnifier"></i></a>
                             <div class="dropdown_search">
-                                <form class="action-form" action="#">
-                                    <input class="form-control" placeholder="Enter your search key" type="text">
+                                <form class="action-form" action="customerFurnServlet">
+                                    <input type="hidden" name="action" value="pageByName">
+                                    <input class="form-control" name="name" placeholder="输入关键词搜索" type="text">
                                     <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
                                 </form>
                             </div>
@@ -161,28 +162,28 @@
 </div>
 <!--  Pagination Area Start -->
 <div class="pro-pagination-style text-center mb-md-30px mb-lm-30px mt-6" data-aos="fade-up">
-        <ul>
-            <c:if test="${requestScope.page.pageNo > 1}">
-                <li><a href="customerFurnServlet?action=page&pageNo=${requestScope.page.pageNo - 1}">上页</a></li>
+    <ul>
+        <li><a href="${requestScope.page.url}&pageNo=1">首页</a></li>
+        <c:if test="${requestScope.page.pageNo > 1}">
+            <li><a href="${requestScope.page.url}&pageNo=${requestScope.page.pageNo - 1}">上页</a></li>
+        </c:if>
+        <!-- 确定起始 -->
+        <c:set var="begin" value="1"></c:set>
+        <c:set var="end" value="${requestScope.page.totalPage}"></c:set>
+        <c:forEach var="i" begin="${begin}" end="${end}">
+            <c:if test="${i == requestScope.page.pageNo}">
+                <li><a class="active" href="${requestScope.page.url}&pageNo=${i}">${i}</a></li>
             </c:if>
-            <!-- 确定起始 -->
-            <c:set var="begin" value="1"></c:set>
-            <c:set var="end" value="${requestScope.page.totalPage}"></c:set>
-            <c:forEach var="i" begin="${begin}" end="${end}">
-
-                <c:if test="${i == requestScope.page.pageNo}">
-                    <li><a class="active" href="customerFurnServlet?action=page&pageNo=${i}">${i}</a></li>
-                </c:if>
-                <c:if test="${i != requestScope.page.pageNo}">
-                    <li><a href="customerFurnServlet?action=page&pageNo=${i}">${i}</a></li>
-                </c:if>
-            </c:forEach>
-
-            <c:if test="${requestScope.page.pageNo < requestScope.page.totalPage}">
-                <li><a href="customerFurnServlet?action=page&pageNo=${requestScope.page.pageNo + 1}">下页</a></li>
+            <c:if test="${i != requestScope.page.pageNo}">
+                <li><a href="${requestScope.page.url}&pageNo=${i}">${i}</a></li>
             </c:if>
-            <li><a>共${requestScope.page.totalPage}页</a></li>
-        </ul>
+        </c:forEach>
+        <c:if test="${requestScope.page.pageNo < requestScope.page.totalPage}">
+            <li><a href="${requestScope.page.url}&pageNo=${requestScope.page.pageNo + 1}">下页</a></li>
+        </c:if>
+        <li><a href="${requestScope.page.url}&pageNo=${requestScope.page.totalPage}">尾页</a></li>
+        <li><a>共${requestScope.page.totalPage}页</a></li>
+    </ul>
 </div>
 <!--  Pagination Area End -->
 <!-- Product tab Area End -->

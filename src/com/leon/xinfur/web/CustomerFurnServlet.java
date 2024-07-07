@@ -25,4 +25,23 @@ public class CustomerFurnServlet extends BasicServlet {
         request.setAttribute("page", page);
         request.getRequestDispatcher("/views/customer/index.jsp").forward(request, response);
     }
+
+    protected void pageByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int pageNo = DataUtils.parseInt(request.getParameter("pageNo"), 1);
+        int pageSize = DataUtils.parseInt(request.getParameter("pageSize"), Page.DEFAULT_PAGE_SIZE);
+        String name = request.getParameter("name");
+        if (name == null) {
+            name = "";
+        }
+        Page<Furn> page = furnService.PageByName(pageNo, pageSize, name);
+
+        StringBuilder url = new StringBuilder("customerFurnServlet?action=pageByName");
+        if (!name.equals("")) {
+            url.append("&name=").append(name);
+        }
+        page.setUrl(url.toString());
+
+        request.setAttribute("page", page);
+        request.getRequestDispatcher("/views/customer/index.jsp").forward(request, response);
+    }
 }

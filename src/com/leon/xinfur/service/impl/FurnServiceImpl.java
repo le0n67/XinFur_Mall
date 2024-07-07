@@ -56,4 +56,18 @@ public class FurnServiceImpl implements FurnService {
         page.setItems(pageItems);
         return page;
     }
+
+    @Override
+    public Page<Furn> PageByName(int pageNo, int pageSize, String name) {
+        Page<Furn> page=new Page<>();
+        page.setPageNo(pageNo);
+        page.setPageSize(pageSize);
+        int totalRow = furnDAO.getTotalRowByName(name);
+        page.setTotalRow(totalRow);
+        int totalPage = (totalRow + pageSize - 1) / pageSize;
+        page.setTotalPage(totalPage);
+        List<Furn> pageItems = furnDAO.getPageItemsByName(pageNo, pageSize,name);
+        page.setItems(pageItems);
+        return page;
+    }
 }

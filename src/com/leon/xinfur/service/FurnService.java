@@ -19,4 +19,5 @@ public interface FurnService {
     Furn queryFurnById(int id);
     Boolean updateFurn(Furn furn);
     Page<Furn> Page(int pageNo,int pageSize);
+    Page<Furn> PageByName(int pageNo,int pageSize,String name);
 }

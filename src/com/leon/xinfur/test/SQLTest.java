@@ -65,4 +65,14 @@ public class SQLTest {
              System.out.println(furns.get(i));
          }
     }
+
+    @Test
+    void getTotalRowByName(){
+        System.out.println(furnDAO.getTotalRowByName("沙发"));
+    }
+
+    @Test
+    void getPageItemsByName(){
+        System.out.println(furnDAO.getPageItemsByName(1, 3, "沙发"));
+    }
 }

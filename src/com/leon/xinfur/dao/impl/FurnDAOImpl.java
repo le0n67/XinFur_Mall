@@ -56,4 +56,16 @@ public class FurnDAOImpl extends BasicDAO<Furn> implements FurnDAO {
         String sql="SELECT `id` , `name` , `maker` , `price` , `sales` , `stock` , `img_path` imgPath from furn LIMIT ? , ? ;";
         return queryMulti(sql,Furn.class,(pageNo-1)*pageSize,pageSize);
     }
+
+    @Override
+    public int getTotalRowByName(String name) {
+        String sql="SELECT COUNT(*) from `furn` where `name` like ?";
+        return ((Number) queryScalar(sql,"%"+name+"%")).intValue();
+    }
+
+    @Override
+    public List<Furn> getPageItemsByName(int pageNo, int pageSize, String name) {
+        String sql="SELECT `id` , `name` , `maker` , `price` , `sales` , `stock` , `img_path` imgPath from furn where `name` like ? LIMIT ? , ? ;";
+        return queryMulti(sql,Furn.class,"%"+name+"%",(pageNo-1)*pageSize,pageSize);
+    }
 }
