@@ -18,7 +18,7 @@ import java.util.List;
 public class Page<T> {
 
     // 默认每页显示的记录数
-    public final static Integer DEFAULT_PAGE_SIZE=3;
+    public final static Integer DEFAULT_PAGE_SIZE=4;
     // 分页页码
     private Integer pageNo;
     // 分页每页显示的记录数
@@ -48,11 +48,11 @@ public class Page<T> {
         this.pageSize = pageSize;
     }
 
-    public Integer gettotalPage() {
+    public Integer getTotalPage() {
         return totalPage;
     }
 
-    public void settotalPage(Integer totalPage) {
+    public void setTotalPage(Integer totalPage) {
         this.totalPage = totalPage;
     }
 

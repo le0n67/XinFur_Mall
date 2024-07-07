@@ -19,6 +19,10 @@
         <servlet-name>FurnServlet</servlet-name>
         <servlet-class>com.leon.xinfur.web.FurnServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerFurnServlet</servlet-name>
+        <servlet-class>com.leon.xinfur.web.CustomerFurnServlet</servlet-class>
+    </servlet>
     <!--<servlet-mapping>-->
     <!--    <servlet-name>RegisterServlet</servlet-name>-->
     <!--    <url-pattern>/registerServlet</url-pattern>-->
@@ -34,5 +38,9 @@
     <servlet-mapping>
         <servlet-name>FurnServlet</servlet-name>
         <url-pattern>/manage/furnServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerFurnServlet</servlet-name>
+        <url-pattern>/customerFurnServlet</url-pattern>
     </servlet-mapping>
 </web-app>
