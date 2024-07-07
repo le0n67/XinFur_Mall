@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="assets/css/style.min.css"/>
     <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-        $(function (){
-            $("a.deleteCss").click(function (){
+        $(function () {
+            $("a.deleteCss").click(function () {
                 var name = $(this).parent().parent().find("td:eq(1)").text();
-                return confirm("确定删除 ["+name+"] 吗？")
+                return confirm("确定删除 [" + name + "] 吗？")
             })
-            $("a.updateCss").click(function (){
+            $("a.updateCss").click(function () {
                 var name = $(this).parent().parent().find("td:eq(1)").text();
-                return confirm("确定更新 ["+name+"] 吗？")
+                return confirm("确定更新 [" + name + "] 吗？")
             })
         })
     </script>
@@ -59,8 +59,8 @@
                             <a href="#">后台管理</a>
                         </div>
                         <div class="header-bottom-set dropdown">
-                        <a href="views/manager/furn_add.jsp">添加家居</a>
-                    </div>
+                            <a href="views/manager/furn_add.jsp?pageNo=${requestScope.page.pageNo}">添加家居</a>
+                        </div>
                     </div>
                 </div>
                 <!-- Header Action End -->
@@ -108,22 +108,27 @@
                             </thead>
                             <tbody>
                             <c:forEach items="${requestScope.page.items}" var="furn">
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}" alt="assets/images/product-image/default.jpg"/></a>
-                                </td>
+                                <tr>
+                                    <td class="product-thumbnail">
+                                        <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}"
+                                                         alt="assets/images/product-image/default.jpg"/></a>
+                                    </td>
 
-                                <td class="product-name"><a href="#">${furn.name}</a></td>
-                                <td class="product-name"><a href="#">${furn.maker}</a></td>
-                                <td class="product-price-cart"><span class="amount">${furn.price}</span></td>
-                                <td class="product-quantity">${furn.sales}</td>
-                                <td class="product-quantity">${furn.stock}</td>
+                                    <td class="product-name"><a href="#">${furn.name}</a></td>
+                                    <td class="product-name"><a href="#">${furn.maker}</a></td>
+                                    <td class="product-price-cart"><span class="amount">${furn.price}</span></td>
+                                    <td class="product-quantity">${furn.sales}</td>
+                                    <td class="product-quantity">${furn.stock}</td>
 
-                                <td class="product-remove">
-                                    <a class="updateCss" href="manage/furnServlet?action=show&id=${furn.id}"><i class="icon-pencil"></i></a>
-                                    <a class="deleteCss" href="manage/furnServlet?action=delete&id=${furn.id}"><i class="icon-close"></i></a>
-                                </td>
-                            </tr>
+                                    <td class="product-remove">
+                                        <a class="updateCss"
+                                           href="manage/furnServlet?action=show&id=${furn.id}&pageNo=${requestScope.page.pageNo}"><i
+                                                class="icon-pencil"></i></a>
+                                        <a class="deleteCss"
+                                           href="manage/furnServlet?action=delete&id=${furn.id}&pageNo=${requestScope.page.pageNo}"><i
+                                                class="icon-close"></i></a>
+                                    </td>
+                                </tr>
                             </c:forEach>
                             </tbody>
                         </table>
@@ -131,6 +136,32 @@
                 </form>
             </div>
         </div>
+        <!--  Pagination Area Start -->
+        <div class="pro-pagination-style text-center mb-md-30px mb-lm-30px mt-6" data-aos="fade-up">
+            <ul>
+                <c:if test="${requestScope.page.pageNo > 1}">
+                    <li><a href="manage/furnServlet?action=page&pageNo=${requestScope.page.pageNo - 1}">上页</a></li>
+                </c:if>
+                <!-- 确定起始 -->
+                <c:set var="begin" value="1"></c:set>
+                <c:set var="end" value="${requestScope.page.totalPage}"></c:set>
+                <c:forEach var="i" begin="${begin}" end="${end}">
+
+                    <c:if test="${i == requestScope.page.pageNo}">
+                        <li><a class="active" href="manage/furnServlet?action=page&pageNo=${i}">${i}</a></li>
+                    </c:if>
+                    <c:if test="${i != requestScope.page.pageNo}">
+                        <li><a href="manage/furnServlet?action=page&pageNo=${i}">${i}</a></li>
+                    </c:if>
+                </c:forEach>
+
+                <c:if test="${requestScope.page.pageNo < requestScope.page.totalPage}">
+                    <li><a href="manage/furnServlet?action=page&pageNo=${requestScope.page.pageNo + 1}">下页</a></li>
+                </c:if>
+                <li><a>共${requestScope.page.totalPage}页</a></li>
+            </ul>
+        </div>
+        <!--  Pagination Area End -->
     </div>
 </div>
 <!-- Cart Area End -->
@@ -153,7 +184,8 @@
                                     <ul class="align-items-center">
                                         <li class="li"><a class="single-link" href="about.html">关于我们</a></li>
                                         <li class="li"><a class="single-link" href="#">交货信息</a></li>
-                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a></li>
+                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a>
+                                        </li>
                                         <li class="li"><a class="single-link" href="#">条款和条件</a></li>
                                         <li class="li"><a class="single-link" href="#">制造</a></li>
                                     </ul>

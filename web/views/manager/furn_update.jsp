@@ -72,7 +72,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="manage/furnServlet" method="post">
                     <input type="hidden" name="action" value="update"/>
-                    <input type="hidden" name="id" value="${furn.id}"/>
+                    <input type="hidden" name="id" value="${requestScope.furn.id}"/>
+                    <input type="hidden" name="pageNo" value="${param.pageNo}"/>
                     <div class="table-content table-responsive cart-table-content">
                         <table>
                             <thead>
@@ -89,20 +90,18 @@
                             <tbody>
                             <tr>
                                 <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}" alt="assets/images/product-image/default.jpg"/></a>
+                                    <a href="#"><img class="img-responsive ml-3" src="${requestScope.furn.imgPath}" alt="assets/images/product-image/default.jpg"/></a>
                                 </td>
-                                <td class="product-name"><input name="name" style="width: 60%" type="text" value="${furn.name}"/></td>
-                                <td class="product-name"><input name="maker" style="width: 90%" type="text" value="${furn.maker}"/></td>
-                                <td class="product-price-cart"><input name="price" style="width: 90%" type="text" value="${furn.price}"/></td>
+                                <td class="product-name"><input name="name" style="width: 60%" type="text" value="${requestScope.furn.name}"/></td>
+                                <td class="product-name"><input name="maker" style="width: 90%" type="text" value="${requestScope.furn.maker}"/></td>
+                                <td class="product-price-cart"><input name="price" style="width: 90%" type="text" value="${requestScope.furn.price}"/></td>
                                 <td class="product-quantity">
-                                    <input name="sales" style="width: 90%" type="text" value="${furn.sales}"/>
+                                    <input name="sales" style="width: 90%" type="text" value="${requestScope.furn.sales}"/>
                                 </td>
                                 <td class="product-quantity">
-                                    <input name="stock" style="width: 90%" type="text" value="${furn.stock}"/>
+                                    <input name="stock" style="width: 90%" type="text" value="${requestScope.furn.stock}"/>
                                 </td>
                                 <td>
-                                    <!--                                    <a href="#"><i class="icon-pencil"></i></a>-->
-                                    <!--                                    <a href="#"><i class="icon-close"></i></a>-->
                                     <input type="submit" style="width: 90%;background-color: silver;border: silver;border-radius: 20%;" value="修改家居"/>
                                 </td>
                             </tr>

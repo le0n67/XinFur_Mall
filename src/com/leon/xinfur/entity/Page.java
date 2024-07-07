@@ -18,7 +18,7 @@ import java.util.List;
 public class Page<T> {
 
     // 默认每页显示的记录数
-    public final static Integer DEFAULT_PAGE_SIZE=5;
+    public final static Integer DEFAULT_PAGE_SIZE=3;
     // 分页页码
     private Integer pageNo;
     // 分页每页显示的记录数

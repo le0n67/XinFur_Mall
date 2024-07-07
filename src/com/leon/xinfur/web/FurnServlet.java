@@ -31,21 +31,18 @@ public class FurnServlet extends BasicServlet {
     }
 
     protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // 创建一个新的Furn对象
         Furn furn = DataUtils.copyParamToBean(request.getParameterMap(), new Furn());
-
         // 将Furn对象添加到furnService中
         furnService.addFurn(furn);
-
         // 跳转到furnServlet页面，传入action=list参数
         //request.getRequestDispatcher("/manage/furnServlet?action=list").forward(request, response);
-        response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
+        response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=page&pageNo="+request.getParameter("pageNo"));
     }
 
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         furnService.deleteFurnById(DataUtils.parseInt(request.getParameter("id"), 0));
-        response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
+        response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=page&pageNo="+request.getParameter("pageNo"));
     }
 
     protected void show(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +55,7 @@ public class FurnServlet extends BasicServlet {
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Furn furn = DataUtils.copyParamToBean(request.getParameterMap(), new Furn());
         furnService.updateFurn(furn);
-        response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=list");
+        response.sendRedirect(request.getContextPath() + "/manage/furnServlet?action=page&pageNo="+request.getParameter("pageNo"));
     }
 
     protected void page(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
