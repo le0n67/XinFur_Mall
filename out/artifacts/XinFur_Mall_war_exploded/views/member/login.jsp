@@ -13,6 +13,10 @@
     <script type="text/javascript">
         $(function () {//页面加载完毕的事件
 
+            if ("${requestScope.active}" === "register") {
+                $("#register_tab")[0].click();//模拟点击
+            }
+
             $("#sub-btn1").click(function () {
                 var usernameVal = $("#username1").val();
                 //正则表达式验证用户名
@@ -29,8 +33,22 @@
                     $(".errorMsg1").text("密码格式有误(4-10个字符)")
                     return false
                 }
-            })
 
+                // 验证码：浏览器这里验证不能为空
+                var codeText = $("#code1").val();
+                //去掉验证码前后空格
+                codeText = $.trim(codeText);
+                if (codeText == null || codeText === "") {
+                    //提示
+                    $("span.errorMsg1").text("验证码不能为空！");
+                    return false;
+                }
+
+                //到这里就全部过关. => 我们暂时不提交，显示验证通过信息
+                $("span.errorMsg1").text("验证通过...");
+                //目前我们写了后台，当验证通过时，就提交给后台
+                return true;
+            })
 
             $("#sub-btn2").click(function () {
                 var usernameVal = $("#username2").val();
@@ -59,7 +77,25 @@
                     $(".errorMsg2").text("电子邮箱格式有误")
                     return false
                 }
-                alert("注册通过")
+
+                // 验证码：浏览器这里验证不能为空
+                var codeText = $("#code2").val();
+                //去掉验证码前后空格
+                codeText = $.trim(codeText);
+                if (codeText == null || codeText === "") {
+                    //提示
+                    $("span.errorMsg2").text("验证码不能为空！");
+                    return false;
+                }
+
+                //到这里就全部过关. => 我们暂时不提交，显示验证通过信息
+                $("span.errorMsg2").text("验证通过...");
+                //目前我们写了后台，当验证通过时，就提交给后台
+                return true;
+            })
+
+            $("#codeimg1,#codeimg2").click(function (){
+                this.src="<%=request.getContextPath()%>/kaptchaServlet?d="+new Date()
             })
 
         })
@@ -80,7 +116,7 @@
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
                         <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo"
-                                                  width="300px"/></a>
+                                                 width="300px"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -96,7 +132,7 @@
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
                         <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo"
-                                                  width="300px"/></a>
+                                                 width="300px"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -115,10 +151,10 @@
             <div class="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">
-                        <a class="active" data-bs-toggle="tab" href="#lg1">
+                        <a id="login_tab" class="active" data-bs-toggle="tab" href="#lg1">
                             <h4>会员登录</h4>
                         </a>
-                        <a data-bs-toggle="tab" href="#lg2">
+                        <a id="register_tab" data-bs-toggle="tab" href="#lg2">
                             <h4>会员注册</h4>
                         </a>
                     </div>
@@ -128,12 +164,13 @@
                                 <div class="login-register-form">
                                     <span class="errorMsg1"
                                           style="float: right; font-weight: bold; font-size: 18pt; color: red">
-                                        ${requestScope.msg}
+                                        ${requestScope.msg1}
                                     </span>
                                     <form action="memberServlet" method="post">
                                         <input type="hidden" name="action" value="login">
                                         <input type="text" id="username1" value="${requestScope.username}" name="username" placeholder="用户名"/>
                                         <input type="password" id="password1" name="password" placeholder="密码"/>
+                                        <input type="text" id="code1" name="code1" style="width: 50%" placeholder="验证码"/><img id="codeimg1" alt="" src="kaptchaServlet">
                                         <div class="button-box">
                                             <div class="login-toggle-btn">
                                                 <input type="checkbox"/>
@@ -151,18 +188,16 @@
                                 <div class="login-register-form">
                                     <span class="errorMsg2"
                                           style="float: right; font-weight: bold; font-size: 18pt; color: red">
+                                        ${requestScope.msg2}
                                     </span>
                                     <!-- 注册 -->
                                     <form action="memberServlet" method="post">
                                         <input type="hidden" name="action" value="register">
-                                        <input type="text" id="username2" name="username" placeholder="用户名"/>
-                                        <input type="password" id="password2" name="password"
-                                               placeholder="输入密码"/>
+                                        <input type="text" id="username2" name="username" placeholder="用户名" value="${requestScope.username}"/>
+                                        <input type="password" id="password2" name="password" placeholder="输入密码"/>
                                         <input type="password" id="repwd" name="repassword" placeholder="确认密码"/>
-                                        <input name="email" id="email" placeholder="电子邮件" type="email"/>
-                                        <input type="text" id="code" name="user-name" style="width: 50%" id="code"
-                                               placeholder="验证码"/>　　<img alt=""
-                                                                            src="assets/images/code/code.bmp">
+                                        <input name="email" id="email" placeholder="电子邮件" type="email" value="${requestScope.email}"/>
+                                        <input type="text" id="code2" name="code2" style="width: 50%" placeholder="验证码"/><img id="codeimg2" alt="" src="kaptchaServlet">
                                         <div class="button-box">
                                             <button type="submit" id="sub-btn2"><span>会员注册</span></button>
                                         </div>

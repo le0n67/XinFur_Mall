@@ -57,8 +57,8 @@
             <div class="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">
-                        <a class="active"  href="index.jsp">
-                            <h4>注册成功, 返回首页</h4>
+                        <a class="active"  href="views/member/login.jsp">
+                            <h4>注册成功, 前往登录</h4>
                         </a>
                     </div>
                 </div>

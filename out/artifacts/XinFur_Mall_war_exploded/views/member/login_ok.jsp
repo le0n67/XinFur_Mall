@@ -23,10 +23,26 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo" width="300px"/></a>
+                        <a href="index.jsp"><img src=" assets/images/logo/logo.png" alt="Site Logo" width="300px"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
+
+                <!-- Header Action Start -->
+                <div class="col align-self-center">
+                    <div class="header-actions">
+                        <div class="header-bottom-set dropdown">
+                            <a>欢迎: ${sessionScope.member.username}</a>
+                        </div>
+                        <div class="header-bottom-set dropdown">
+                            <a href="#">订单管理</a>
+                        </div>
+                        <div class="header-bottom-set dropdown">
+                            <a href="memberServlet?action=logout">安全退出</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Action End -->
             </div>
         </div>
     </div>
