@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css">
+    <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $("button.add-to-cart").click(function (){
+                var id = $(this).attr("furnId");
+                location.href="cartServlet?action=addItem&id="+id
+            })
+        })
+    </script>
 
 </head>
 
@@ -136,7 +145,7 @@
                                                    data-bs-target="#exampleModal"><i
                                                         class="icon-size-fullscreen"></i></a>
                                             </div>
-                                            <button title="Add To Cart" class=" add-to-cart">Add
+                                            <button title="Add To Cart" furnId="${furn.id}" class=" add-to-cart">Add
                                                 To Cart
                                             </button>
                                         </div>

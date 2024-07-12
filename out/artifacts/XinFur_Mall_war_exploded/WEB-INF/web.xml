@@ -20,6 +20,10 @@
         <servlet-name>Kaptcha</servlet-name>
         <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>com.leon.xinfur.web.CartServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>MemberServlet</servlet-name>
@@ -36,5 +40,9 @@
     <servlet-mapping>
         <servlet-name>Kaptcha</servlet-name>
         <url-pattern>/kaptchaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cartServlet</url-pattern>
     </servlet-mapping>
 </web-app>
