@@ -20,18 +20,6 @@ import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 public class MemberServlet extends BasicServlet {
     private MemberService memberService = new MemberServiceImpl();
 
-    //@Override
-    //protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //    String action = request.getParameter("action");
-    //    if ("login".equals(action)) {
-    //        login(request, response);
-    //    } else if ("register".equals(action)) {
-    //        register(request, response);
-    //    }else{
-    //        response.getWriter().write("请求错误");
-    //    }
-    //}
-
     protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("执行了登录操作");
         //获取用户名和密码
@@ -101,16 +89,16 @@ public class MemberServlet extends BasicServlet {
                 //返回注册页面
                 //后面可以加入提示信息...
                 request.setAttribute("msg2", "用户名已存在");
-                request.setAttribute("active","register");
+                request.setAttribute("active", "register");
                 request.getRequestDispatcher("/views/member/login.jsp")
                         .forward(request, response);
             }
         } else {
             //如果验证码错误，则跳转到注册页面，并显示错误信息
             request.setAttribute("msg2", "验证码错误");
-            request.setAttribute("email",email);
+            request.setAttribute("email", email);
             request.setAttribute("username", username);
-            request.setAttribute("active","register");
+            request.setAttribute("active", "register");
             request.getRequestDispatcher("/views/member/login.jsp")
                     .forward(request, response);
         }
@@ -118,16 +106,25 @@ public class MemberServlet extends BasicServlet {
 
     //判断是否为管理员
     protected void isAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("执行了判断是否为管理员操作");
+        //判断该用户是否存在,判断是否为管理员,跳转到后台管理页面
         String username = request.getParameter("username");
-        if (!memberService.isAdmin(username)) {
-            request.setAttribute("msg", "管理员账号或密码有误");
+        String password = request.getParameter("password");
+        if (memberService.isExistsUserName(username)) {
+            if (memberService.isAdmin(request.getParameter("username"))&& memberService.login(username,password)!=null) {
+                request.getRequestDispatcher("/views/manager/manage_menu.jsp")
+                        .forward(request, response);
+            } else {
+                request.setAttribute("msg", "管理员账号或密码有误");
+                request.getRequestDispatcher("/views/manager/manage_login.jsp")
+                        .forward(request, response);
+            }
+        } else {
+            request.setAttribute("msg", "用户不存在");
             request.getRequestDispatcher("/views/manager/manage_login.jsp")
                     .forward(request, response);
-        } else {
-            request.getRequestDispatcher("/views/manager/manage_menu.jsp")
-                    .forward(request, response);
         }
+
+
     }
 
     //退出登录

@@ -145,8 +145,7 @@
                                                    data-bs-target="#exampleModal"><i
                                                         class="icon-size-fullscreen"></i></a>
                                             </div>
-                                            <button title="Add To Cart" furnId="${furn.id}" class=" add-to-cart">Add
-                                                To Cart
+                                            <button title="Add To Cart" furnId="${furn.id}" class=" add-to-cart">加入购物车
                                             </button>
                                         </div>
                                         <div class="content">

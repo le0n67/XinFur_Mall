@@ -12,6 +12,53 @@
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css">
+    <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+
+            //给清空购物车绑定一个点击事件
+            $("a.clearCart").click(function () {
+                //使用确认弹窗
+                //返回一个false(取消删除) 或者 true(删除)
+                return confirm("你确认要删除购物车?");
+            })
+
+            //给删除购物车绑定一个点击事件
+            $("a.delItem").click(function () {
+                //获取到你要删除的家居名字
+                //分析一下当前的html结构
+                const furnName = $(this).parent().parent().find("td:eq(1)").text();
+                //使用确认弹窗
+                //返回一个false(取消删除) 或者 true(删除)
+                return confirm("你确认要删除【" + furnName + "】?");
+            })
+
+
+            var CartPlusMinus = $(".cart-plus-minus");
+            CartPlusMinus.prepend('<div class="dec qtybutton">-</div>');
+            CartPlusMinus.append('<div class="inc qtybutton">+</div>');
+            $(".qtybutton").on("click", function () {
+
+                var $button = $(this);
+                var oldValue = $button.parent().find("input").val();
+                if ($button.text() === "+") {
+                    var newVal = parseFloat(oldValue) + 1;
+                } else {
+                    // Don't allow decrementing below zero
+                    if (oldValue > 1) {
+                        var newVal = parseFloat(oldValue) - 1;
+                    } else {
+                        newVal = 1;
+                    }
+                }
+                $button.parent().find("input").val(newVal);
+                var frunId = $button.parent().find("input").attr("furnId");
+                //这里我们发出修改购物车的请求
+                location.href = "cartServlet?action=updateCount&count=" + newVal + "&id=" + frunId;
+            });
+
+        })
+    </script>
 </head>
 
 <body>
@@ -26,22 +73,31 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo" width="280px"/></a>
+                        <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo" width="280px"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
                 <!-- Header Action Start -->
                 <div class="col align-self-center">
                     <div class="header-actions">
-                        <div class="header-bottom-set dropdown">
-                            <a>欢迎: hello</a>
-                        </div>
-                        <div class="header-bottom-set dropdown">
-                            <a href="#">订单管理</a>
-                        </div>
-                        <div class="header-bottom-set dropdown">
-                            <a href="#">安全退出</a>
-                        </div>
+                        <!-- Single Wedge Start -->
+                        <c:if test="${empty sessionScope.member}">
+                            <div class="header-bottom-set dropdown">
+                                <a href="views/member/login.jsp">登录|注册</a>
+                            </div>
+                        </c:if>
+                        <c:if test="${not empty sessionScope.member}">
+                            <div class="header-bottom-set dropdown">
+                                <a>欢迎: ${sessionScope.member.username}</a>
+                            </div>
+                            <div class="header-bottom-set dropdown">
+                                <a href="#">订单管理</a>
+                            </div>
+                            <div class="header-bottom-set dropdown">
+                                <a href="memberServlet?action=logout">安全退出</a>
+                            </div>
+                        </c:if>
+                        <!-- Single Wedge End -->
                     </div>
                 </div>
                 <!-- Header Action End -->
@@ -55,7 +111,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img width="280px" src="assets/images/logo/logo.png"
+                        <a href="index.jsp"><img width="280px" src="assets/images/logo/logo.png"
                                                   alt="Site Logo"/></a>
                     </div>
                 </div>
@@ -86,7 +142,7 @@
 <!-- Cart Area Start -->
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
-        <h3 class="cart-page-title">Your cart items</h3>
+        <h3 class="cart-page-title">购物车</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="#">
@@ -103,36 +159,46 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-3" src="assets/images/product-image/1.jpg"
-                                                     alt=""/></a>
-                                </td>
-                                <td class="product-name"><a href="#">Product Name</a></td>
-                                <td class="product-price-cart"><span class="amount">$60.00</span></td>
-                                <td class="product-quantity">
-                                    <div class="cart-plus-minus">
-                                        <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1"/>
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">$70.00</td>
-                                <td class="product-remove">
-                                    <a href="#"><i class="icon-close"></i></a>
-                                </td>
-                            </tr>
+                            <c:if test="${not empty sessionScope.cart.items}">
+                                <c:forEach items="${sessionScope.cart.items}" var="entry">
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <a href="#"><img class="img-responsive ml-3"
+                                                             src="${entry.value.imgPath}"
+                                                             alt=""/></a>
+                                        </td>
+                                        <td class="product-name"><a href="#">${entry.value.name}</a></td>
+                                        <td class="product-price-cart"><span class="amount">$${entry.value.price}</span>
+                                        </td>
+                                        <td class="product-quantity">
+                                            <div class="cart-plus-minus">
+                                                <input furnId="${entry.value.id}" class="cart-plus-minus-box"
+                                                       type="text" name="qtybutton"
+                                                       value="${entry.value.count}"/>
+                                            </div>
+                                        </td>
+                                        <td class="product-subtotal">$${entry.value.totalPrice}</td>
+                                        <td class="product-remove">
+                                            <a class="delItem" href="cartServlet?action=delItem&id=${entry.value.id}"><i
+                                                    class="icon-close"></i></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
                             </tbody>
                         </table>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="cart-shiping-update-wrapper">
-                                <h4>共xx件商品 总价 xxxx.xx元</h4>
+                                <h4>共${sessionScope.cart.totalCount}件商品
+                                    总价 ${sessionScope.cart.cartTotalPrice}元</h4>
                                 <div class="cart-shiping-update">
-                                    <a href="#">购 物 车 结 账</a>
+                                    <a href="orderServlet?action=saveOrder">购 物 车 - 生 成 订 单</a>
                                 </div>
                                 <div class="cart-clear">
                                     <button>继 续 购 物</button>
-                                    <a href="#">清 空 购 物 车</a>
+                                    <a class="clearCart" href="cartServlet?action=clear">清 空 购 物 车</a>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +229,8 @@
                                     <ul class="align-items-center">
                                         <li class="li"><a class="single-link" href="about.html">关于我们</a></li>
                                         <li class="li"><a class="single-link" href="#">交货信息</a></li>
-                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a></li>
+                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a>
+                                        </li>
                                         <li class="li"><a class="single-link" href="#">条款和条件</a></li>
                                         <li class="li"><a class="single-link" href="#">制造</a></li>
                                     </ul>

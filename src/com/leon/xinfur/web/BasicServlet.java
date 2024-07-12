@@ -22,8 +22,8 @@ abstract public class BasicServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
 
         String action = req.getParameter("action");
-        System.out.print("BasicServlet doPost --> ");
-        System.out.println("action:" + action);
+        //System.out.print("BasicServlet doPost --> ");
+        //System.out.println("action:" + action);
         //使用反射获取当前对象方法
 
         //尝试获取当前类中名为action的方法

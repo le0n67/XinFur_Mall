@@ -18,17 +18,27 @@ public class CartItem {
     private BigDecimal price;
     private Integer count;//数量
     private BigDecimal totalPrice;
+    private String imgPath;
 
-    public CartItem(Integer id, String name, BigDecimal price, Integer count, BigDecimal totalPrice) {
+    public CartItem(Integer id, String name, BigDecimal price, Integer count, BigDecimal totalPrice ,String imgPath) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.count = count;
         this.totalPrice = totalPrice;
+        this.imgPath=imgPath;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    public String getImgPath() {
+        return imgPath;
     }
 
     public void setId(Integer id) {
