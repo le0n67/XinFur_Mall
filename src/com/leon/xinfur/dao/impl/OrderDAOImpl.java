@@ -25,7 +25,7 @@ public class OrderDAOImpl extends BasicDAO<Order> implements OrderDAO {
 
     @Override
     public List<Order> getOrders() {
-        String sql= "SELECT * FROM `order`";
+        String sql= "SELECT * FROM `order` Order BY 'create_time' DESC";
         return queryMulti(sql, Order.class);
     }
 

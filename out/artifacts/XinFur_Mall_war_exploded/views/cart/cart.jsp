@@ -159,6 +159,15 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <c:if test="${empty sessionScope.cart.items}">
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="alert alert-danger" role="alert">
+                                            购物车为空
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:if>
                             <c:if test="${not empty sessionScope.cart.items}">
                                 <c:forEach items="${sessionScope.cart.items}" var="entry">
                                     <tr>

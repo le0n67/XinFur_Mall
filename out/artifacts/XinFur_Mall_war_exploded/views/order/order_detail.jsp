@@ -105,7 +105,7 @@
                                 <th>家居名</th>
                                 <th>单价</th>
                                 <th>数量</th>
-                                <th>金额</th>
+                                <%--<th>金额</th>--%>
                             </tr>
                             </thead>
                             <tbody>
@@ -124,7 +124,7 @@
                                         <td class="product-name"><a href="#">${orderItem.name}</a></td>
                                         <td class="product-price-cart"><span class="amount">${orderItem.price}</span></td>
                                         <td class="product-quantity">${orderItem.count}</td>
-                                        <td class="product-subtotal">${orderItem.totalPrice}</td>
+                                        <%--<td class="product-subtotal">${orderItem.totalPrice}</td>--%>
                                     </tr>
                                 </c:forEach>
                             </c:if>

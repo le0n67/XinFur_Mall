@@ -86,7 +86,7 @@
                             <thead>
                             <tr>
                                 <th>订单</th>
-                                <th>日期</th>
+                                <%--<th>日期</th>--%>
                                 <th>金额</th>
                                 <th>状态</th>
                                 <th>详情</th>
@@ -107,7 +107,7 @@
                                 <c:forEach items="${sessionScope.orders}" var="order">
                                     <tr>
                                         <td class="product-name">${order.id}</td>
-                                        <td class="product-name">${order.createTime}</td>
+                                        <%--<td class="product-name">${order.createTime}</td>--%>
                                         <td class="product-price-cart"><span class="amount">${order.price}</span></td>
                                         <td class="product-name"><a href="#">${order.status}</a></td>
                                         <td class="product-remove">

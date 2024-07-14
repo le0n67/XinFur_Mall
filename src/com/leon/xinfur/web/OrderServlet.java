@@ -37,7 +37,6 @@ public class OrderServlet extends BasicServlet {
 
         String orderId = orderService.createOrder(cart, member.getId());
         request.getSession().setAttribute("orderId", orderId);
-        System.out.println(orderId);
         response.sendRedirect(request.getContextPath() + "/views/order/checkout.jsp");
     }
 
@@ -52,7 +51,6 @@ public class OrderServlet extends BasicServlet {
 
     protected void showOrders(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Order> orders = orderService.showOrders();
-        System.out.println(orders);
         request.getSession().setAttribute("orders", orders);
         request.getRequestDispatcher("/views/order/order.jsp").forward(request, response);
     }

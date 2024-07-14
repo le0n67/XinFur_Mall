@@ -89,13 +89,11 @@ public class CartServlet extends BasicServlet {
         }
         CartItem cartItem = new CartItem(furn.getId(), furn.getName(), furn.getPrice(), 1, furn.getPrice(), furn.getImgPath());
         Cart cart = (Cart) request.getSession().getAttribute("cart");
-
         if (cart == null) {
             cart = new Cart();
             request.getSession().setAttribute("cart", cart);
         }
         cart.addItem(cartItem);
-        System.out.println(cart);
         response.sendRedirect(request.getHeader("Referer"));
     }
 

@@ -35,7 +35,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo" width="300px"/></a>
+                        <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo" width="280px"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
