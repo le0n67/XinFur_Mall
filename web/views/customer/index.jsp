@@ -15,9 +15,9 @@
     <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
     <script>
         $(function () {
-            $("button.add-to-cart").click(function (){
+            $("button.add-to-cart").click(function () {
                 var id = $(this).attr("furnId");
-                location.href="cartServlet?action=addItem&id="+id
+                location.href = "cartServlet?action=addItem&id=" + id
             })
         })
     </script>
@@ -65,7 +65,7 @@
                                 <a>欢迎: ${sessionScope.member.username}</a>
                             </div>
                             <div class="header-bottom-set dropdown">
-                                <a href="#">订单管理</a>
+                                <a href="orderServlet?action=showOrders">订单管理</a>
                             </div>
                             <div class="header-bottom-set dropdown">
                                 <a href="memberServlet?action=logout">安全退出</a>
@@ -145,8 +145,16 @@
                                                    data-bs-target="#exampleModal"><i
                                                         class="icon-size-fullscreen"></i></a>
                                             </div>
-                                            <button title="Add To Cart" furnId="${furn.id}" class=" add-to-cart">加入购物车
-                                            </button>
+                                            <c:if test="${furn.stock > 0}">
+                                                <button title="Add To Cart" furnId="${furn.id}"
+                                                        class="add-to-cart">加入购物车
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${furn.stock <= 0}">
+                                                <button title="Add To Cart" class="add-to-cart" furnId="${furn.id}">
+                                                    <span style="color: red">该家居已售罄！</span>
+                                                </button>
+                                            </c:if>
                                         </div>
                                         <div class="content">
                                             <h5 class="title">

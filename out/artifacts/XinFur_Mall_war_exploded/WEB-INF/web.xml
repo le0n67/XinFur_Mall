@@ -24,6 +24,10 @@
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>com.leon.xinfur.web.CartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>com.leon.xinfur.web.OrderServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>MemberServlet</servlet-name>
@@ -44,5 +48,9 @@
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/cartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/orderServlet</url-pattern>
     </servlet-mapping>
 </web-app>

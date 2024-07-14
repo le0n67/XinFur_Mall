@@ -82,6 +82,11 @@ public class CartServlet extends BasicServlet {
         int id = DataUtils.parseInt(request.getParameter("id"), 0);
         Furn furn = furnService.queryFurnById(id);
 
+        //判断库存
+        if (furn.getStock() <= 0) {
+            response.sendRedirect(request.getHeader("Referer"));
+            return;
+        }
         CartItem cartItem = new CartItem(furn.getId(), furn.getName(), furn.getPrice(), 1, furn.getPrice(), furn.getImgPath());
         Cart cart = (Cart) request.getSession().getAttribute("cart");
 

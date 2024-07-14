@@ -91,7 +91,7 @@
                                 <a>欢迎: ${sessionScope.member.username}</a>
                             </div>
                             <div class="header-bottom-set dropdown">
-                                <a href="#">订单管理</a>
+                                <a href="">订单管理</a>
                             </div>
                             <div class="header-bottom-set dropdown">
                                 <a href="memberServlet?action=logout">安全退出</a>
@@ -112,7 +112,7 @@
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
                         <a href="index.jsp"><img width="280px" src="assets/images/logo/logo.png"
-                                                  alt="Site Logo"/></a>
+                                                 alt="Site Logo"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -168,7 +168,7 @@
                                                              alt=""/></a>
                                         </td>
                                         <td class="product-name"><a href="#">${entry.value.name}</a></td>
-                                        <td class="product-price-cart"><span class="amount">$${entry.value.price}</span>
+                                        <td class="product-price-cart"><span class="amount">￥${entry.value.price}</span>
                                         </td>
                                         <td class="product-quantity">
                                             <div class="cart-plus-minus">
@@ -177,7 +177,7 @@
                                                        value="${entry.value.count}"/>
                                             </div>
                                         </td>
-                                        <td class="product-subtotal">$${entry.value.totalPrice}</td>
+                                        <td class="product-subtotal">￥${entry.value.totalPrice}</td>
                                         <td class="product-remove">
                                             <a class="delItem" href="cartServlet?action=delItem&id=${entry.value.id}"><i
                                                     class="icon-close"></i></a>
@@ -246,8 +246,7 @@
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="my-account.html">我的账号</a>
-                                        </li>
+                                        <li class="li"><a class="single-link" href="my-account.html">我的账号</a></li>
                                         <li class="li"><a class="single-link" href="cart.html">我的购物车</a></li>
                                         <li class="li"><a class="single-link" href="login.html">登录</a></li>
                                         <li class="li"><a class="single-link" href="wishlist.html">感兴趣的</a></li>
