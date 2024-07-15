@@ -94,8 +94,8 @@
                 return true;
             })
 
-            $("#codeimg1,#codeimg2").click(function (){
-                this.src="<%=request.getContextPath()%>/kaptchaServlet?d="+new Date()
+            $("#codeimg1,#codeimg2").click(function () {
+                this.src = "<%=request.getContextPath()%>/kaptchaServlet?d=" + new Date()
             })
 
         })
@@ -115,8 +115,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo"
-                                                 width="300px"/></a>
+                        <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo" width="280px"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -131,8 +130,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo"
-                                                 width="300px"/></a>
+                        <a href="index.jsp"><img src="assets/images/logo/logo.png" alt="Site Logo" width="280px"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -162,15 +160,16 @@
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <span class="errorMsg1"
-                                          style="float: right; font-weight: bold; font-size: 18pt; color: red">
+                                    <span class="errorMsg1" style="float: right; font-weight: bold; font-size: 18pt; color: red">
                                         ${requestScope.msg1}
                                     </span>
                                     <form action="memberServlet" method="post">
                                         <input type="hidden" name="action" value="login">
-                                        <input type="text" id="username1" value="${requestScope.username}" name="username" placeholder="用户名"/>
+                                        <input type="text" id="username1" value="${requestScope.username}"
+                                               name="username" placeholder="用户名"/>
                                         <input type="password" id="password1" name="password" placeholder="密码"/>
-                                        <input type="text" id="code1" name="code1" style="width: 50%" placeholder="验证码"/><img id="codeimg1" alt="" src="kaptchaServlet">
+                                        <input type="text" id="code1" name="code1" style="width: 50%"
+                                               placeholder="验证码"/><img id="codeimg1" alt="" src="kaptchaServlet">
                                         <div class="button-box">
                                             <div class="login-toggle-btn">
                                                 <input type="checkbox"/>
@@ -186,18 +185,20 @@
                         <div id="lg2" class="tab-pane">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <span class="errorMsg2"
-                                          style="float: right; font-weight: bold; font-size: 18pt; color: red">
+                                    <span class="errorMsg2" style="float: right; font-weight: bold; font-size: 18pt; color: red">
                                         ${requestScope.msg2}
                                     </span>
                                     <!-- 注册 -->
                                     <form action="memberServlet" method="post">
                                         <input type="hidden" name="action" value="register">
-                                        <input type="text" id="username2" name="username" placeholder="用户名" value="${requestScope.username}"/>
+                                        <input type="text" id="username2" name="username" placeholder="用户名"
+                                               value="${requestScope.username}"/>
                                         <input type="password" id="password2" name="password" placeholder="输入密码"/>
                                         <input type="password" id="repwd" name="repassword" placeholder="确认密码"/>
-                                        <input name="email" id="email" placeholder="电子邮件" type="email" value="${requestScope.email}"/>
-                                        <input type="text" id="code2" name="code2" style="width: 50%" placeholder="验证码"/><img id="codeimg2" alt="" src="kaptchaServlet">
+                                        <input name="email" id="email" placeholder="电子邮件" type="email"
+                                               value="${requestScope.email}"/>
+                                        <input type="text" id="code2" name="code2" style="width: 50%"
+                                               placeholder="验证码"/><img id="codeimg2" alt="" src="kaptchaServlet">
                                         <div class="button-box">
                                             <button type="submit" id="sub-btn2"><span>会员注册</span></button>
                                         </div>
