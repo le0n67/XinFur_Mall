@@ -33,7 +33,7 @@ abstract public class BasicServlet extends HttpServlet {
             method.invoke(this, req, resp);
         } catch (Exception e) {
             //打印异常堆栈信息
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
