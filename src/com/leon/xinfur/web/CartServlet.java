@@ -1,5 +1,6 @@
 package com.leon.xinfur.web;
 
+import com.google.gson.Gson;
 import com.leon.xinfur.entity.Cart;
 import com.leon.xinfur.entity.CartItem;
 import com.leon.xinfur.entity.Furn;
@@ -11,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Date：2024/7/9  18:01
@@ -95,6 +98,28 @@ public class CartServlet extends BasicServlet {
         }
         cart.addItem(cartItem);
         response.sendRedirect(request.getHeader("Referer"));
+    }
+    protected void addItemByAjax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取使用工具类id
+        int id = DataUtils.parseInt(request.getParameter("id"), 0);
+        Furn furn = furnService.queryFurnById(id);
+
+        //判断库存
+        if (furn.getStock() <= 0) {
+            response.sendRedirect(request.getHeader("Referer"));
+            return;
+        }
+        CartItem cartItem = new CartItem(furn.getId(), furn.getName(), furn.getPrice(), 1, furn.getPrice(), furn.getImgPath());
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        if (cart == null) {
+            cart = new Cart();
+            request.getSession().setAttribute("cart", cart);
+        }
+        cart.addItem(cartItem);
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("cartTotalCount", cart.getTotalCount());
+        String resultJson = new Gson().toJson(resultMap);
+        response.getWriter().write(resultJson);
     }
 
 

@@ -142,10 +142,9 @@
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="about.html">关于我们</a></li>
+                                        <li class="li"><a class="single-link" href="#">关于我们</a></li>
                                         <li class="li"><a class="single-link" href="#">交货信息</a></li>
-                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a>
-                                        </li>
+                                        <li class="li"><a class="single-link" href="#">隐私与政策</a></li>
                                         <li class="li"><a class="single-link" href="#">条款和条件</a></li>
                                         <li class="li"><a class="single-link" href="#">制造</a></li>
                                     </ul>
@@ -161,12 +160,11 @@
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="my-account.html">我的账号</a>
-                                        </li>
-                                        <li class="li"><a class="single-link" href="cart.html">我的购物车</a></li>
-                                        <li class="li"><a class="single-link" href="login.html">登录</a></li>
+                                        <li class="li"><a class="single-link" href="views/cart/cart.jsp">我的账号</a></li>
+                                        <li class="li"><a class="single-link" href="views/cart/cart.jsp">我的购物车</a></li>
+                                        <li class="li"><a class="single-link" href="views/member/login.jsp">登录</a></li>
                                         <li class="li"><a class="single-link" href="wishlist.html">感兴趣的</a></li>
-                                        <li class="li"><a class="single-link" href="checkout.jsp">结账</a></li>
+                                        <li class="li"><a class="single-link" href="views/order/order.jsp">结账</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -190,7 +188,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-left">
-                        <p class="copy-text">Copyright &copy; 2021 韩顺平教育~</p>
+                        <p class="copy-text">Copyright &copy; 2024 猩家居~</p>
                     </div>
                 </div>
             </div>

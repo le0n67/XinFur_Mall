@@ -7,6 +7,7 @@ package com.leon.xinfur.web; /**
  */
 
 import com.google.code.kaptcha.servlet.KaptchaServlet;
+import com.google.gson.Gson;
 import com.leon.xinfur.entity.Member;
 import com.leon.xinfur.service.MemberService;
 import com.leon.xinfur.service.impl.MemberServiceImpl;
@@ -14,6 +15,8 @@ import com.leon.xinfur.service.impl.MemberServiceImpl;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 
@@ -110,7 +113,7 @@ public class MemberServlet extends BasicServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         if (memberService.isExistsUserName(username)) {
-            if (memberService.isAdmin(request.getParameter("username"))&& memberService.login(username,password)!=null) {
+            if (memberService.isAdmin(request.getParameter("username")) && memberService.login(username, password) != null) {
                 request.getRequestDispatcher("/views/manager/manage_menu.jsp")
                         .forward(request, response);
             } else {
@@ -132,5 +135,15 @@ public class MemberServlet extends BasicServlet {
         System.out.println("执行了退出登录操作");
         request.getSession().invalidate();
         response.sendRedirect(request.getContextPath());
+    }
+
+    protected void isExist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String username = request.getParameter("username");
+        response.setContentType("text/html;charset=utf-8");
+        boolean isExistsUserName = memberService.isExistsUserName(username);
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("isExist", isExistsUserName);
+        String resultJson = new Gson().toJson(resultMap);
+        response.getWriter().write(resultJson);
     }
 }

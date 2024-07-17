@@ -13,6 +13,19 @@
     <script type="text/javascript">
         $(function () {//页面加载完毕的事件
 
+            $("#username2").blur(function () {
+                var username = this.value;
+                $.getJSON(
+                    "memberServlet", "action=isExist&username=" + username,
+                    function (data) {
+                        if (data.isExist) {
+                            $(".errorMsg2").text("用户名已存在")
+                        }
+                    }
+                )
+
+            })
+
             if ("${requestScope.active}" === "register") {
                 $("#register_tab")[0].click();//模拟点击
             }
@@ -100,6 +113,7 @@
 
         })
 
+
     </script>
 </head>
 
@@ -160,7 +174,8 @@
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <span class="errorMsg1" style="float: right; font-weight: bold; font-size: 18pt; color: red">
+                                    <span class="errorMsg1"
+                                          style="float: right; font-weight: bold; font-size: 18pt; color: red">
                                         ${requestScope.msg1}
                                     </span>
                                     <form action="memberServlet" method="post">
@@ -185,7 +200,8 @@
                         <div id="lg2" class="tab-pane">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <span class="errorMsg2" style="float: right; font-weight: bold; font-size: 18pt; color: red">
+                                    <span class="errorMsg2"
+                                          style="float: right; font-weight: bold; font-size: 18pt; color: red">
                                         ${requestScope.msg2}
                                     </span>
                                     <!-- 注册 -->
@@ -230,10 +246,9 @@
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="about.html">关于我们</a></li>
+                                        <li class="li"><a class="single-link" href="#">关于我们</a></li>
                                         <li class="li"><a class="single-link" href="#">交货信息</a></li>
-                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a>
-                                        </li>
+                                        <li class="li"><a class="single-link" href="#">隐私与政策</a></li>
                                         <li class="li"><a class="single-link" href="#">条款和条件</a></li>
                                         <li class="li"><a class="single-link" href="#">制造</a></li>
                                     </ul>

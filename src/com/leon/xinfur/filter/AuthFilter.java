@@ -9,22 +9,23 @@ package com.leon.xinfur.filter;
  * @version 1.0
  */
 
+import com.google.gson.Gson;
 import com.leon.xinfur.entity.Member;
+import com.leon.xinfur.utils.DataUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class AuthFilter implements Filter {
     private List<String> excludedUrls;
+
     public void init(FilterConfig config) throws ServletException {
         String[] excludedUrlsStr = config.getInitParameter("excludedUrls").split(",");
-        excludedUrls= Arrays.asList(excludedUrlsStr);
-        System.out.println("excludedUrls:"+excludedUrls);
+        excludedUrls = Arrays.asList(excludedUrlsStr);
+        System.out.println("excludedUrls:" + excludedUrls);
     }
 
     public void destroy() {
@@ -34,11 +35,18 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest req = (HttpServletRequest) request;
         String url = req.getServletPath();
-        System.out.println("url:"+url);
-        if(!excludedUrls.contains(url)) {
-            Member member = (Member)  req.getSession().getAttribute("member");
+        System.out.println("url:" + url);
+        if (!excludedUrls.contains(url)) {
+            Member member = (Member) req.getSession().getAttribute("member");
             if (member == null) {
-                req.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
+                if (!DataUtils.isAjax(req)) {
+                    req.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
+                } else {
+                    Map<String, Object> resultMap = new HashMap<>();
+                    resultMap.put("url", "views/member/login.jsp");
+                    String resultJson = new Gson().toJson(resultMap);
+                    response.getWriter().write(resultJson);
+                }
                 return;
             }
         }

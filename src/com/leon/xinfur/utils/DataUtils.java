@@ -2,6 +2,7 @@ package com.leon.xinfur.utils;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -34,4 +35,10 @@ public class DataUtils {
         }
         return defaultVal;
     }
+
+    //判断是否为Ajax请求
+    public static boolean isAjax(HttpServletRequest request) {
+        return "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
+    }
+
 }
