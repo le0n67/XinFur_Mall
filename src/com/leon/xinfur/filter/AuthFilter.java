@@ -38,6 +38,19 @@ public class AuthFilter implements Filter {
         System.out.println("url:" + url);
         if (!excludedUrls.contains(url)) {
             Member member = (Member) req.getSession().getAttribute("member");
+
+            //如果用户名id大于2 则为普通用户访问/views/manager/* 时跳转到/views/manager/manage_login.jsp
+            if (member != null && member.getId() > 2) {
+                if (url.startsWith("/views/manager/")) {
+                    if (!DataUtils.isAjax(req)) {
+                        req.getRequestDispatcher("/views/manager/manage_login.jsp").forward(request, response);
+                    } else {
+                        Map<String, Object> resultMap = new HashMap<>();
+                        resultMap.put("url", "views/manager/manage_login.jsp");
+                    }
+                }
+            }
+
             if (member == null) {
                 if (!DataUtils.isAjax(req)) {
                     req.getRequestDispatcher("/views/member/login.jsp").forward(request, response);

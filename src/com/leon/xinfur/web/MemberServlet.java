@@ -113,7 +113,9 @@ public class MemberServlet extends BasicServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         if (memberService.isExistsUserName(username)) {
-            if (memberService.isAdmin(request.getParameter("username")) && memberService.login(username, password) != null) {
+            Member member = memberService.login(username, password);
+            if (memberService.isAdmin(request.getParameter("username")) && member!= null) {
+                request.getSession().setAttribute("member", member);
                 request.getRequestDispatcher("/views/manager/manage_menu.jsp")
                         .forward(request, response);
             } else {

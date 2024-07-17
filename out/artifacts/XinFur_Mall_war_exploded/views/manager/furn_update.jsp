@@ -6,10 +6,41 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <title>猩家居</title>
     <base href="<%= request.getContextPath() +"/" %> ">
+    <link rel="icon" href="assets/images/icons/icon.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css"/>
+    <style type="text/css">
+        #pic {
+            position: relative;
+        }
+
+        input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 120px;
+            opacity: 0;
+            cursor: pointer;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function prev(event) {
+            //获取展示图片的区域
+            var img = document.getElementById("prevView");
+            //获取文件对象
+            var file = event.files[0];
+            //获取文件阅读器： Js的一个类，直接使用即可
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                //给img的src设置图片url
+                img.setAttribute("src", this.result);
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -34,10 +65,10 @@
 
                         <!-- Single Wedge Start -->
                         <div class="header-bottom-set dropdown">
-                            <a href="#">家居管理</a>
+                            <a href="views/manager/furn_manage.jsp">家居管理</a>
                         </div>
                         <div class="header-bottom-set dropdown">
-                            <a href="#">订单管理</a>
+                            <a href="views/order/order.jsp">订单管理</a>
                         </div>
                     </div>
                 </div>
@@ -70,10 +101,10 @@
         <h3 class="cart-page-title">家居后台管理-修改家居</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <form action="manage/furnServlet" method="post">
-                    <input type="hidden" name="action" value="update"/>
-                    <input type="hidden" name="id" value="${requestScope.furn.id}"/>
-                    <input type="hidden" name="pageNo" value="${param.pageNo}"/>
+                <form action="manage/furnServlet?action=update&id=${requestScope.furn.id}&pageNo=${param.pageNo}" method="post" enctype="multipart/form-data">
+                    <%--<input type="hidden" name="action" value="update"/>--%>
+                    <%--<input type="hidden" name="id" value="${requestScope.furn.id}"/>--%>
+                    <%--<input type="hidden" name="pageNo" value="${param.pageNo}"/>--%>
                     <div class="table-content table-responsive cart-table-content">
                         <table>
                             <thead>
@@ -90,19 +121,32 @@
                             <tbody>
                             <tr>
                                 <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-3" src="${requestScope.furn.imgPath}" alt="assets/images/product-image/default.jpg"/></a>
+                                    <div id="pic">
+                                        <img class="img-responsive ml-3" id="prevView"
+                                             src="${requestScope.furn.imgPath}"
+                                             alt="assets/images/product-image/default.jpg"/>
+                                        <input type="file" name="imgPath" id="" value="${requestScope.furn.imgPath}"
+                                               onchange="prev(this)"/>
+                                    </div>
                                 </td>
-                                <td class="product-name"><input name="name" style="width: 60%" type="text" value="${requestScope.furn.name}"/></td>
-                                <td class="product-name"><input name="maker" style="width: 90%" type="text" value="${requestScope.furn.maker}"/></td>
-                                <td class="product-price-cart"><input name="price" style="width: 90%" type="text" value="${requestScope.furn.price}"/></td>
+                                <td class="product-name"><input name="name" style="width: 60%" type="text"
+                                                                value="${requestScope.furn.name}"/></td>
+                                <td class="product-name"><input name="maker" style="width: 90%" type="text"
+                                                                value="${requestScope.furn.maker}"/></td>
+                                <td class="product-price-cart"><input name="price" style="width: 90%" type="text"
+                                                                      value="${requestScope.furn.price}"/></td>
                                 <td class="product-quantity">
-                                    <input name="sales" style="width: 90%" type="text" value="${requestScope.furn.sales}"/>
+                                    <input name="sales" style="width: 90%" type="text"
+                                           value="${requestScope.furn.sales}"/>
                                 </td>
                                 <td class="product-quantity">
-                                    <input name="stock" style="width: 90%" type="text" value="${requestScope.furn.stock}"/>
+                                    <input name="stock" style="width: 90%" type="text"
+                                           value="${requestScope.furn.stock}"/>
                                 </td>
                                 <td>
-                                    <input type="submit" style="width: 90%;background-color: silver;border: silver;border-radius: 20%;" value="修改家居"/>
+                                    <input type="submit"
+                                           style="width: 90%;background-color: silver;border: silver;border-radius: 20%;"
+                                           value="修改家居"/>
                                 </td>
                             </tr>
                             </tbody>
@@ -149,9 +193,12 @@
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="views/cart/cart.jsp">我的账号</a></li>
-                                        <li class="li"><a class="single-link" href="views/cart/cart.jsp">我的购物车</a></li>
-                                        <li class="li"><a class="single-link" href="views/member/login.jsp">登录</a></li>
+                                        <li class="li"><a class="single-link" href="views/cart/cart.jsp">我的账号</a>
+                                        </li>
+                                        <li class="li"><a class="single-link" href="views/cart/cart.jsp">我的购物车</a>
+                                        </li>
+                                        <li class="li"><a class="single-link" href="views/member/login.jsp">登录</a>
+                                        </li>
                                         <li class="li"><a class="single-link" href="wishlist.html">感兴趣的</a></li>
                                         <li class="li"><a class="single-link" href="views/order/order.jsp">结账</a></li>
                                     </ul>

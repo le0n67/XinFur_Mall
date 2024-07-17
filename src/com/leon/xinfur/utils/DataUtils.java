@@ -41,4 +41,6 @@ public class DataUtils {
         return "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
     }
 
+    public static String  FURN_IMG_DIRECTORY = "assets/images/product-image";
+
 }

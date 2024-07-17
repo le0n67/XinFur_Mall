@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <title>猩家居</title>
     <base href="<%= request.getContextPath() +"/" %> ">
+    <link rel="icon" href="assets/images/icons/icon.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
@@ -35,7 +36,7 @@
                             <a href="manage/furnServlet?action=page&pageNo=1">家居管理</a>
                         </div>
                         <div class="header-bottom-set dropdown">
-                            <a href="pages/manager/manager.html">订单管理</a>
+                            <a href="orderServlet?action=showOrders">订单管理</a>
                         </div>
                     </div>
                 </div>

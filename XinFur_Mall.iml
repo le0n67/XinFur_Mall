@@ -40,5 +40,6 @@
     <orderEntry type="library" name="commons-logging-1.1.1" level="project" />
     <orderEntry type="library" name="kaptcha-2.3.2" level="project" />
     <orderEntry type="library" name="gson-2.2.4" level="project" />
+    <orderEntry type="library" name="commons-fileupload-1.2.1" level="project" />
   </component>
 </module>
