@@ -112,7 +112,7 @@
                                 <tr>
                                     <td class="product-thumbnail">
                                         <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}"
-                                                         alt="assets/images/product-image/default.jpg"/></a>
+                                                         alt=""/></a>
                                     </td>
 
                                     <td class="product-name"><a href="#">${furn.name}</a></td>

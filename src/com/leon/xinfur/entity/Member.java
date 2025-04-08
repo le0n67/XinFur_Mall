@@ -1,12 +1,5 @@
 package com.leon.xinfur.entity;
 
-/**
- * Date：2024/7/1  16:16
- * Description：TODO
- *
- * @author Leon
- * @version 1.0
- */
 
 public class Member {
     private Integer id;

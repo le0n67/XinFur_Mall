@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="xinfurwar">
+    <output-path>$PROJECT_DIR$/out/artifacts/xinfurwar</output-path>
+    <root id="archive" name="xinfurwar.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="XinFur_Mall" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="druid-1.1.10" />
+          <element id="library" level="module" name="JUnit5.8.1" module-name="XinFur_Mall" />
+          <element id="library" level="project" name="commons-beanutils-1.8.0" />
+          <element id="library" level="project" name="commons-logging-1.1.1" />
+          <element id="library" level="project" name="kaptcha-2.3.2" />
+          <element id="library" level="project" name="gson-2.2.4" />
+          <element id="library" level="project" name="commons-fileupload-1.2.1" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="XinFur_Mall/web/Web" />
+    </root>
+  </artifact>
+</component>

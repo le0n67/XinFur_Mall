@@ -13,6 +13,7 @@ import java.util.Properties;
  * @author leon
  * @version 1.0
  * 基于druid数据库连接池的工具类
+ * 加入Thread Local进行事务管理
  */
 public class JDBCUtilsByDruid {
 

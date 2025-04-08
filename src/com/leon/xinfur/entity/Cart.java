@@ -71,7 +71,7 @@ public class Cart {
         Set<Integer> keys = items.keySet();
         for (Integer id : keys) {
             CartItem item = items.get(id);
-            //老师提醒, 一定要包add后的值, 重新赋给 cartTotalPrice, 这样才是累加.
+            // 一定要包add后的值, 重新赋给 cartTotalPrice, 这样才是累加.
             cartTotalPrice = cartTotalPrice.add(item.getTotalPrice());
         }
 

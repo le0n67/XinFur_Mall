@@ -124,7 +124,7 @@
                                     <div id="pic">
                                         <img class="img-responsive ml-3" id="prevView"
                                              src="${requestScope.furn.imgPath}"
-                                             alt="assets/images/product-image/default.jpg"/>
+                                             alt=""/>
                                         <input type="file" name="imgPath" id="" value="${requestScope.furn.imgPath}"
                                                onchange="prev(this)"/>
                                     </div>
